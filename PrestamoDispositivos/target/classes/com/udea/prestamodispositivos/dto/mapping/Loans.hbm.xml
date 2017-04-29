@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-abr-2017 0:18:36 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.udea.prestamodispositivos.dto.mapping.Loans" table="loans" catalog="prestamos" optimistic-lock="version">
+        <composite-id name="id" class="com.udea.prestamodispositivos.dto.mapping.LoansId">
+            <key-property name="startDate" type="timestamp">
+                <column name="startDate" length="19" />
+            </key-property>
+            <key-property name="username" type="string">
+                <column name="username" length="20" />
+            </key-property>
+            <key-property name="code" type="string">
+                <column name="code" length="15" />
+            </key-property>
+            <key-property name="copy" type="string">
+                <column name="copy" length="5" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="devices" class="com.udea.prestamodispositivos.dto.mapping.Devices" update="false" insert="false" fetch="select">
+            <column name="code" length="15" not-null="true" />
+            <column name="copy" length="5" not-null="true" />
+        </many-to-one>
+        <many-to-one name="users" class="com.udea.prestamodispositivos.dto.mapping.Users" update="false" insert="false" fetch="select">
+            <column name="username" length="20" not-null="true" />
+        </many-to-one>
+        <property name="endDate" type="timestamp">
+            <column name="endDate" length="19" not-null="true" />
+        </property>
+        <property name="returnDate" type="timestamp">
+            <column name="returnDate" length="19" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="15" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
