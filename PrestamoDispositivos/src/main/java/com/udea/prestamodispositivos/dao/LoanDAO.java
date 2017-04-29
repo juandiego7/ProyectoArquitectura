@@ -5,13 +5,13 @@
  */
 package com.udea.prestamodispositivos.dao;
 
-import com.udea.prestamodispositivos.dto.Loan;
-import java.util.List;
+import com.udea.prestamodispositivos.dto.Loans;
+import java.util.ArrayList;
 
 /**
  *
  * @author Juan Diego
  */
 public interface LoanDAO {
-    public  List<Loan> getLoans();
+    public ArrayList<Loans> getLoans();
 }
