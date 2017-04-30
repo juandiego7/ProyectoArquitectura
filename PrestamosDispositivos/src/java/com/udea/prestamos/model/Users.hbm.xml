@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-abr-2017 2:26:18 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.udea.prestamos.model.Users" table="users" catalog="prestamos" optimistic-lock="version">
+        <id name="username" type="string">
+            <column name="username" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="users" class="com.udea.prestamos.model.Users" fetch="select">
+            <column name="manager" length="20" />
+        </many-to-one>
+        <property name="typeId" type="string">
+            <column name="typeId" length="3" not-null="true" />
+        </property>
+        <property name="numberId" type="string">
+            <column name="numberId" length="12" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="lastName" length="50" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="30" not-null="true" />
+        </property>
+        <property name="role" type="string">
+            <column name="role" length="1" not-null="true" />
+        </property>
+        <set name="loanses" table="loans" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="username" length="20" not-null="true" />
+            </key>
+            <one-to-many class="com.udea.prestamos.model.Loans" />
+        </set>
+        <set name="userses" table="users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="manager" length="20" />
+            </key>
+            <one-to-many class="com.udea.prestamos.model.Users" />
+        </set>
+    </class>
+</hibernate-mapping>
