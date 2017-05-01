@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Prestamo de dispositivos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Ícono de la pestaña -->
+        <link rel="icon" type="image/png" href="img/ima1.png"/>
+
+        <!-- Llamado al css usuarioStyle-->
+        <link rel="stylesheet" href="css/loginStyle.css">
+
+        <!-- Referencias a bootstrap 4.0.0 alpha 6 -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+        <!--Acá empieza el nav-->
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+                <span><img src="img/ima1.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    Inicio
+                </span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">                    
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                    </form>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="registro.html">Registrarse</a>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </nav>
+        <!--Acá termina el nav-->
+
+
+        <div class="container">
+            <div class="card card-container">
+                <form class="form">
+                    <h2>Registro</h2>
+                    <hr/>
+                    <input type="text" id="inputName" class="form-control" placeholder="Nombre" required autofocus>
+                    <input type="text" id="inputUser" class="form-control" placeholder="Usuario" required>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+                    <input type="password" id="inputPasswordRec" class="form-control" placeholder="Repetir contraseña" required>
+                    <input type="checkbox" required>    Al hacer clic en "Registrarse", aceptas las Condiciones y confirmas que leíste nuestra <a href="#">Política de datos.</a>
+                    <hr/>
+                    <button class="btn btn-success " id="enviar" type="submit">Registrarse</button>
+                    <hr/>
+                </form>
+            </div>
+        </div>
+        <hr/>
+
+
+        <!--Acá empieza footer-->
+        <footer class="footer text-center" id="footer">
+            <div class="container">
+                <span class="text-muted">Arquitectura de software - Universidad de Antioquia - Semestre 2017-2</span>
+            </div>
+        </footer>
+        <!--Acá termina el footer-->
+    </body>
+</html>
+

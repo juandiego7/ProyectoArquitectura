@@ -1,0 +1,244 @@
+<html>
+    <head>
+        <title>Prestamo de dispositivos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Ícono de la pestaña -->
+        <link rel="icon" type="image/png" href="img/ima1.png"/>
+
+        <!-- Llamado al css usuarioStyle-->
+        <link rel="stylesheet" href="css/indexStyle.css">
+
+        <!-- Referencias a bootstrap 4.0.0 alpha 6 -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+        <!--Acá empieza el nav-->
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+                <span><img src="img/ima1.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    Inicio
+                </span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#acerca">Acerca de nosotros</a>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#tutorias" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dispositivos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item idrop" href="#computador">Computadores</a>
+                            <a class="dropdown-item idrop" href="#celular">Celulares</a>
+                            <a class="dropdown-item idrop" href="#audifono">Audífonos</a>
+                            <a class="dropdown-item idrop" href="#portatil">Portátiles</a>
+                            <a class="dropdown-item idrop" href="#tablet">Tablets</a>
+                            <a class="dropdown-item idrop" href="#usb">Conectores USB</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Buscar">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="buscar">Buscar</button>
+                    </form>
+                </ul>     
+                <form class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="registro.html">Registrarse</a>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </nav>
+        <!--Acá termina el nav-->
+
+
+        <!-- Acá empieza el Header -->
+        <header class="intro-header">
+            <div class="container text-center">
+                <div class="intro-message">                  
+                    <h1 class="display-4">Servicio de prestamo de <br/>dispositivos</h1>
+                    <br/><br/><br/>
+                    <h3>Será nuestro gusto ayudarte</h3>
+                    <hr class="intro-divider">
+                </div>
+            </div>
+        </header>  
+        <!-- Acá termina el Header -->
+
+
+        <!-- Acaá empieza acerca -->
+        <br/><br/><br/>
+        <section id="acerca">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-5">
+                        <img src="img/ima1.png" id="ima1"/>
+                    </div>
+                    <div class="col-7 intro-message">
+                        <h2 class="h2">¿De qué se trata?</h2>
+                        <hr class="intro-divider"/>
+                        <p class="lead">
+                            >> Nuestro servicio se basa en el prestamo de dispositivos 
+                            electrónicos con fines académicos dentro del plantel universitario.                            
+                        </p>
+                        <br/>
+                        <h2 class="h2">¿Cómo hago uso de los dispositivos?</h2>
+                        <hr class="intro-divider"/>
+                        <p class="lead">
+                            >> Cada dispositivo a prestar debe ser reservado por medio de ésta página 
+                            como mínimo con dos horas de anticipación, y éste se prestará en
+                            un rango de tiempo que ca entre dos y ocho horas por día
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Acá termina acerca -->
+
+
+        <!-- Acá comienza dispositivos -->
+        <section id="dispositivos">
+            <div class="container text-center">
+                <h2 class="h2">¿Qué dispositivos prestamos?</h2>
+                <hr class="intro-divider"/>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card" id="computador">
+                            <img class="card-img-top ima2" src="img/computador.jpg" alt="computador">
+                            <div class="card-block">
+                                <h4 class="card-title h4">Computadores</h4>
+                                <p class="card-text">Nuestro principal servicio es el prestamo de computadores
+                                    de escritorio, contamos con diferentes sistemas operativos.</p>
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card" id="celular">
+                            <img class="card-img-top ima2" src="img/celular.jpg" alt="celular">
+                            <div class="card-block">
+                                <h4 class="card-title h4">Celulares</h4>
+                                <p class="card-text">¿Tus pruebas requieren un dispositivo móvil?
+                                    Te podemos prestar celulares de diferente tipo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card" id="audifono">
+                            <img class="card-img-top ima2" src="img/audifonos.jpg" alt="audifonos">
+                            <div class="card-block">
+                                <h4 class="card-title h4">Audífonos</h4>
+                                <p class="card-text">Nuestros usuarios podrán acceder también a 
+                                    audífonos, éstos también pueden estar integrados con micrófono.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="intro-divider">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card" id="portatil">
+                            <img class="card-img-top ima2" src="img/portatil.jpg" alt="portatil">
+                            <div class="card-block">
+                                <h4 class="card-title h4">Portatiles</h4>
+                                <p class="card-text">Si un celular no es suficiente para tu prueba
+                                    de campo, también podemos facilitarte un computador portatil</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card" id="tablet">
+                            <img class="card-img-top ima2" src="img/tablet.jpg" alt="Tablet">
+                            <div class="card-block">
+                                <h4 class="card-title h4">Tablets</h4>
+                                <p class="card-text">En nuestro centro de prestamo ambién contamos 
+                                    con tablets, principalmente basadas en Android y iPad.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card" id="usb">
+                            <img class="card-img-top ima2" src="img/usb.jpg" alt="conector usb">
+                            <div class="card-block">
+                                <h4 class="card-title h4">Conector USB</h4>
+                                <p class="card-text">¿Necesitas compartir tu información entre 
+                                    dispositivos? Puedes hacer uso de nuestros cables USB.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Acá termina dispositivos -->
+
+
+        <!--Acá empieza contacto -->
+        <section class="content-section-a" id="contacto">
+            <div class="jumbotron jumbotron-sm">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-12">
+                            <h1 class="h1">
+                                Contacte con nosotros <small>Será nuestro gusto asesorarte</small></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="container-fluid bg-grey">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <p>Contacte con nosotros, te responderémos antes de 24 horas.</p>
+                            <p><span class="glyphicon glyphicon-map-marker"></span> Medellín, CO</p>
+                            <p><span class="glyphicon glyphicon-phone"></span> +57 300188266</p>
+                            <p><span class="glyphicon glyphicon-envelope"></span>servicios@udea.edu.com</p> 
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="row">
+                                <div class="col-sm-6 form-group">
+                                    <input class="form-control" id="name" name="nombre" placeholder="Nombre" type="text" required>
+                                </div>
+                                <div class="col-sm-6 form-group">
+                                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                                </div>
+                            </div>
+                            <textarea class="form-control" id="comments" name="mensaje" placeholder="Mensaje" rows="5"></textarea><br>
+                            <div class="row">
+                                <div class="col-sm-12 form-group">
+                                    <button class="btn btn-success" type="submit" id="submit">Enviar</button>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>       
+        <!-- Acá termina contacto -->
+
+
+        <!--Acá empieza footer-->
+        <footer class="footer text-center" id="footer">
+            <div class="container">
+                <span class="text-muted">Arquitectura de software - Universidad de Antioquia - Semestre 2017-2</span>
+            </div>
+        </footer>
+        <!--Acá termina el footer-->
+    </body>
+</html>
+
