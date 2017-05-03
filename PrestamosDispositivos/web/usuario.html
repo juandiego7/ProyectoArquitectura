@@ -109,7 +109,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="dispositivo in noReservados | orderBy:ordenSeleccionado | filter:buscar">
+                                <tr ng-repeat="dispositivo in noReservados| orderBy:ordenSeleccionado | filter:buscar">
                                     <td scope="row">{{dispositivo.codigo}}</td>
                                     <td>{{dispositivo.dispositivo}}</td>
                                     <td>{{dispositivo.descripcion}}</td>
@@ -118,80 +118,78 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <!-- Acá termina reservar -->
+                    <!-- Acá termina reservar -->
 
 
-                <!-- Acá empieza buscar -->
-                <div role="tabpanel" class="tab-pane fade" id="buscar">
-                    <br/>
-                    <div class="panel-heading">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                            <input type="text" class="form-control" ng-model="buscar" placeholder="Buscar dispositivos">
+                    <!-- Acá empieza buscar -->
+                    <div role="tabpanel" class="tab-pane fade" id="buscar">
+                        <br/>
+                        <div class="panel-heading">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                <input type="text" class="form-control" ng-model="buscar" placeholder="Buscar dispositivos">
+                            </div>
                         </div>
+                        <table class="table table-hover">
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th><a href="" ng-click="ordenarPor('codigo')">Código</a>
+                                        <span class="caret" style="cursor:pointer" ng-click="ordenarPor('codigo')"></span>
+                                    </th>
+                                    <th>
+                                        <a href="" ng-click="ordenarPor('dispositivo')">Dispositivo</a>
+                                        <span class="caret" style="cursor:pointer" ng-click="ordenarPor('-dispositivo')"></span>
+                                    </th>
+                                    <th>Descripción</th>
+                                    <th>Estado</th>
+                                    <th>reservar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="dispositivo in todos| orderBy:ordenSeleccionado | filter:buscar">
+                                    <td scope="row">{{dispositivo.codigo}}</td>
+                                    <td>{{dispositivo.dispositivo}}</td>
+                                    <td>{{dispositivo.descripcion}}</td>
+                                    <td>{{dispositivo.estado}}</td>
+                                    <td>{{dispositivo.reservar}}</td>
+                                </tr>   
+                            </tbody>
+                        </table>
                     </div>
-                    <table class="table table-hover">
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th><a href="" ng-click="ordenarPor('codigo')">Código</a>
-                                    <span class="caret" style="cursor:pointer" ng-click="ordenarPor('codigo')"></span>
-                                </th>
-                                <th>
-                                    <a href="" ng-click="ordenarPor('dispositivo')">Dispositivo</a>
-                                    <span class="caret" style="cursor:pointer" ng-click="ordenarPor('-dispositivo')"></span>
-                                </th>
-                                <th>Descripción</th>
-                                <th>Estado</th>
-                                <th>reservar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="dispositivo in todos| orderBy:ordenSeleccionado | filter:buscar">
-                                <td scope="row">{{dispositivo.codigo}}</td>
-                                <td>{{dispositivo.dispositivo}}</td>
-                                <td>{{dispositivo.descripcion}}</td>
-                                <td>{{dispositivo.estado}}</td>
-                                <td>{{dispositivo.reservar}}</td>
-                            </tr>   
-                        </tbody>
-                    </table>
+                    <!--Acá termina buscar -->
+
+
+                    <!-- Acá empieza verReservados-->
+                    <div role="tabpanel" class="tab-pane fade" id="verReservados">
+                        <h2>Contenido de ver reservados</h2>
+                    </div>
+                    <!-- Acá termina verReservados-->
+
+
+                    <!-- Acá empieza verHistorial-->
+                    <div role="tabpanel" class="tab-pane fade" id="verHistorial">
+                        <h2>Contenido de ver historial</h2>
+                    </div>
+                    <!-- Acá termina verHistorial-->
+
+
+                    <!-- Acá empieza cancelar-->
+                    <div role="tabpanel" class="tab-pane fade" id="cancelar">
+                        <h2>Contenido de cancelar</h2>
+                    </div>
+                    <!-- Acá termina cancelar-->
+
+
+                    <!-- Acá empieza perfil-->
+                    <div role="tabpanel" class="tab-pane fade" id="perfil">
+                        <h2>Contenido de perfil</h2>
+                    </div>
+                    <!-- Acá termina perfil-->
+
                 </div>
             </div>
-            <!--Acá termina buscar -->
-
-
-            <!-- Acá empieza verReservados-->
-            <div role="tabpanel" class="tab-pane fade" id="verReservados">
-                <h2>Contenido de ver reservados</h2>
-            </div>
-            <!-- Acá termina verReservados-->
-
-
-            <!-- Acá empieza verHistorial-->
-            <div role="tabpanel" class="tab-pane fade" id="verHistorial">
-                <h2>Contenido de ver historial</h2>
-            </div>
-            <!-- Acá termina verHistorial-->
-
-
-            <!-- Acá empieza cancelar-->
-            <div role="tabpanel" class="tab-pane fade" id="cancelar">
-                <h2>Contenido de cancelar</h2>
-            </div>
-            <!-- Acá termina cancelar-->
-
-
-            <!-- Acá empieza perfil-->
-            <div role="tabpanel" class="tab-pane fade" id="perfil">
-                <h2>Contenido de perfil</h2>
-            </div>
-            <!-- Acá termina perfil-->
-
-
         </div>
     </div>
-</div>
 </section>
 <!-- Acá termina el contenido central -->
 
