@@ -54,7 +54,7 @@ public class UsuarioResource {
 //                    @QueryParam("password")String password,
 //                    @QueryParam("role")String role,
 //                    @QueryParam("manager")String manager
-            
+            //registro
         usuarioDAOImpl.registraUsuario(user);
 //            Users managerU = null;
 //            Users usuario = null;
