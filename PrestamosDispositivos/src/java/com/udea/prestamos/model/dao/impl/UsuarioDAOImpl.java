@@ -9,24 +9,12 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author Juan Diego
  *
  */
 public class UsuarioDAOImpl implements UsuarioDAO{
-	@Autowired
-	SessionFactory sessionFactory;
-	
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 	
 	@Override
 	public List<Users> getUsuarios(){
@@ -46,7 +34,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	public void registraUsuario(Users user){
 		Session session = null;
 		try {
-			session = sessionFactory.getCurrentSession();
+			session = HibernateUtil.getSessionFactory().openSession();
 			session.save(user);
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -59,7 +47,6 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		Session session = null;
 		try{
 			session = HibernateUtil.getSessionFactory().openSession();
-                        System.out.println("username: "+username);
 			user = (Users) session.get(Users.class,username);
 		}catch (HibernateException e) {
 			e.printStackTrace();

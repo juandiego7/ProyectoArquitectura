@@ -18,11 +18,11 @@
                 <column name="copy" length="5" />
             </key-property>
         </composite-id>
-        <many-to-one name="devices" class="com.udea.prestamos.model.Devices" update="false" insert="false" fetch="select">
+        <many-to-one name="devices" class="com.udea.prestamos.model.Devices" insert="false" update="false" >
             <column name="code" length="15" not-null="true" />
             <column name="copy" length="5" not-null="true" />
         </many-to-one>
-        <many-to-one name="users" class="com.udea.prestamos.model.Users" update="false" insert="false" fetch="select">
+        <many-to-one name="users" class="com.udea.prestamos.model.Users" insert="false" update="false">
             <column name="username" length="20" not-null="true" />
         </many-to-one>
         <property name="endDate" type="timestamp">

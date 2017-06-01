@@ -5,11 +5,18 @@
  */
 package com.udea.prestamos.ws;
 
+import com.udea.prestamos.dto.Dispositivo;
 import com.udea.prestamos.email.sendEmail;
+import com.udea.prestamos.model.Devices;
+import com.udea.prestamos.model.dao.impl.DispositivoDAOImpl;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 
 import javax.ws.rs.POST;
@@ -23,10 +30,12 @@ import javax.ws.rs.core.MediaType;
  * @author jnda
  */
 @Path("dispositivo")
-public class DispositivoResource {
-
+public class DispositivoResource { 
+    
     @Context
     private UriInfo context;
+    
+    DispositivoDAOImpl dispositivoDAOImpl = new DispositivoDAOImpl();
 
     /**
      * Creates a new instance of DispositivoResource
@@ -75,4 +84,27 @@ public class DispositivoResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public void putJson(String content) {
     }
+    
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Dispositivo> getTodos() throws RemoteException{
+        
+        List<Devices> dev = null;
+        List<Dispositivo> dispositivos = null;
+        try {
+            dev = dispositivoDAOImpl.getDispositivos();
+            dispositivos = new ArrayList<>();
+            for (Devices devices : dev) {
+                dispositivos.add(new Dispositivo(devices.getId(),
+                                                 devices.getName(),
+                                                 devices.getType(),
+                                                 devices.getStatus(),
+                                                 devices.getDetails()));
+            }
+            return dispositivos;
+        } catch (Exception e) {
+            throw new RemoteException("Problema consultando");
+        }
+    }
+    
 }

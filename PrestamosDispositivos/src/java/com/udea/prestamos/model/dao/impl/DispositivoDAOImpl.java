@@ -5,6 +5,7 @@ package com.udea.prestamos.model.dao.impl;
 
 import com.udea.prestamos.model.Devices;
 import com.udea.prestamos.model.DevicesId;
+import com.udea.prestamos.model.HibernateUtil;
 import com.udea.prestamos.model.dao.DispositivoDAO;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,6 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -21,24 +21,15 @@ import org.hibernate.criterion.Restrictions;
  */
 public class DispositivoDAOImpl implements DispositivoDAO {
 
-    SessionFactory sessionFactory;
-
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
     @Override
     public List<Devices> getDispositivos() {
         List<Devices> lista = new ArrayList<>();
         Session session = null;
         try {
-            session = sessionFactory.getCurrentSession();//session provista por spring
+            session = HibernateUtil.getSessionFactory().openSession();//session provista por spring
             Criteria criteria = session.createCriteria(Devices.class);
             lista = criteria.list();
+            //session.close();
         } catch (HibernateException e) {
             e.printStackTrace();
         }
@@ -49,8 +40,9 @@ public class DispositivoDAOImpl implements DispositivoDAO {
     public void ActualizaDispositivo(Devices device) {
         Session session = null;
         try {
-            session = sessionFactory.getCurrentSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             session.update(device);
+            session.close();
         } catch (HibernateException e) {
             e.printStackTrace();
         }
@@ -62,8 +54,9 @@ public class DispositivoDAOImpl implements DispositivoDAO {
         Devices device = null;
         Session session = null;
         try {
-            session = sessionFactory.getCurrentSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             device = (Devices) session.get(Devices.class, deviceId);
+            session.close();
         } catch (HibernateException e) {
             e.printStackTrace();
         }
@@ -74,8 +67,9 @@ public class DispositivoDAOImpl implements DispositivoDAO {
     public void registraDispositivo(Devices device){
         Session session = null;
         try {
-            session = sessionFactory.getCurrentSession();
+            session = HibernateUtil.getSessionFactory().openSession();
             session.save(device);
+            session.close();
         } catch (HibernateException e) {
             
         }
@@ -86,7 +80,7 @@ public class DispositivoDAOImpl implements DispositivoDAO {
         List<Devices> lista = new ArrayList<>();
         Session session = null;
         try {
-            session = sessionFactory.getCurrentSession();//session provista por spring
+            session = HibernateUtil.getSessionFactory().openSession();//session provista por spring
             Criteria criteria = session.createCriteria(Devices.class);
             if (code != null && !"".equals(code)) {
                 criteria.add(Restrictions.eq("deviceId.code", code));
@@ -98,6 +92,7 @@ public class DispositivoDAOImpl implements DispositivoDAO {
                 criteria.add(Restrictions.eq("type", type));
             }
             lista = criteria.list();
+            session.close();
         } catch (HibernateException e) {
             e.printStackTrace();
         }
