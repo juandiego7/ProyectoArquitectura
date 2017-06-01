@@ -5,6 +5,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <script type="text/javascript" src="resources/angular.min.js"></script>
+        <script type="text/javascript" src="resources/angular-route.min.js"></script>
+        <script type="text/javascript" src="angular/usuario.js"></script>
+        <script type="text/javascript" src="resources/angular-cookies.min.js"></script>        
+        
         <!-- Ícono de la pestaña -->
         <link rel="icon" type="image/png" href="img/ima1.png"/>
 
@@ -17,7 +22,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body ng-app="usuario">
 
         <!--Acá empieza el nav-->
         <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
@@ -58,14 +63,14 @@
                 <p id="profile-name" class="profile-name-card"></p>
                 <form class="form-signin">
                     <span id="reauth-email" class="reauth-email"></span>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+                    <input type="text" id="inputEmail" class="form-control" placeholder="username" required autofocus ng-model="username">
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required ng-model="password">
                     <div id="remember" class="checkbox">
                         <label>
                             <input type="checkbox" value="remember-me"> Recordarme
                         </label>
                     </div>
-                    <button class="btn btn-success " id="enviar" type="submit">Ingresar</button>
+                    <button class="btn btn-success " id="enviar" type="submit" ng-click="login()">Ingresar</button>
                     <hr/>
                 </form>
                 <a href="#" class="forgot-password text-center">

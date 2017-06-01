@@ -1,5 +1,6 @@
 package com.udea.prestamos.model.dao.impl;
 
+import com.udea.prestamos.model.HibernateUtil;
 import com.udea.prestamos.model.Users;
 import com.udea.prestamos.model.dao.UsuarioDAO;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		List<Users> lista = new ArrayList<Users>();
 		Session session = null;
 		try {
-			session = sessionFactory.getCurrentSession();//session provista por spring
+			session = HibernateUtil.getSessionFactory().openSession();//session provista por spring
 			Criteria criteria = session.createCriteria(Users.class);
 			lista = criteria.list();
 		} catch (HibernateException e) {
@@ -57,7 +58,8 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		Users user = null;
 		Session session = null;
 		try{
-			session = sessionFactory.getCurrentSession();
+			session = HibernateUtil.getSessionFactory().openSession();
+                        System.out.println("username: "+username);
 			user = (Users) session.get(Users.class,username);
 		}catch (HibernateException e) {
 			e.printStackTrace();

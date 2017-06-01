@@ -19,4 +19,5 @@ public interface UsuarioDAO {
     public void registraUsuario(Users user);
 
     public Users getUsuario(String username);
+    
 }
