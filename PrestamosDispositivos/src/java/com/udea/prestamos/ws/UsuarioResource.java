@@ -1,8 +1,12 @@
 package com.udea.prestamos.ws;
 
+import com.udea.prestamos.dto.Dispositivo;
+import com.udea.prestamos.dto.Usuario;
+import com.udea.prestamos.model.Devices;
 import com.udea.prestamos.model.Users;
 import com.udea.prestamos.model.dao.impl.UsuarioDAOImpl;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
@@ -40,11 +44,13 @@ public class UsuarioResource {
         return "N";
     }
     
+    
+    
 
     @POST//Metodo http con que responde este metodo
     @Consumes(MediaType.APPLICATION_JSON)//Formato de respuesta
     @Produces(MediaType.APPLICATION_JSON)//Formato de respuesta
-    public void registro(Users user) throws RemoteException{
+    public Usuario registro(Usuario usuario) throws RemoteException{
 //                    @QueryParam("username")String username,
 //                    @QueryParam("typeId")String typeId,
 //                    @QueryParam("numberId")String numberId,
@@ -54,8 +60,26 @@ public class UsuarioResource {
 //                    @QueryParam("password")String password,
 //                    @QueryParam("role")String role,
 //                    @QueryParam("manager")String manager
-            //registro
+            
+        Users manager = null;
+        if (usuario.getManager()!=null) {
+            manager = new Users();
+            manager.setUsername(usuario.getManager().getUsername());
+        }
+
+        Users user = new Users(usuario.getUsername(),
+                               manager,
+                               usuario.getTypeId(),
+                               usuario.getNumberId(),
+                               usuario.getName(),
+                               usuario.getLastName(),
+                               usuario.getEmail(),
+                               usuario.getPassword(), 
+                               usuario.getRole());
+      
+        System.out.println("sss "+user.getName());
         usuarioDAOImpl.registraUsuario(user);
+        return usuario;
 //            Users managerU = null;
 //            Users usuario = null;
 //            try {
@@ -68,5 +92,37 @@ public class UsuarioResource {
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }
+    }
+    
+    @GET
+    @Path("todos")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Usuario> getTodos() throws RemoteException{
+        
+        List<Users> users = null;
+        List<Usuario> usuarios = null;
+        try {
+            users = usuarioDAOImpl.getUsuarios();
+            usuarios = new ArrayList<>();
+            for (Users usuario : users) {
+                Usuario manager = null;
+                if (usuario.getUsers()!=null) {
+                    manager = new Usuario();
+                    manager.setUsername(usuario.getUsers().getUsername());
+                }
+                usuarios.add(new Usuario(usuario.getUsername(),
+                               usuario.getTypeId(),
+                               usuario.getNumberId(),
+                               usuario.getName(),
+                               usuario.getLastName(),
+                               usuario.getEmail(),
+                               usuario.getRole(), 
+                               usuario.getPassword(),
+                               manager));
+            }
+            return usuarios;
+        } catch (Exception e) {
+            throw new RemoteException("Problema consultando");
+        }
     }
 }

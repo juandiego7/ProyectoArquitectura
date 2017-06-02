@@ -14,11 +14,13 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Juan Diego
  *
  */
+@Transactional
 public class DispositivoDAOImpl implements DispositivoDAO {
 
     @Override
@@ -37,11 +39,13 @@ public class DispositivoDAOImpl implements DispositivoDAO {
     }
 
     @Override
-    public void ActualizaDispositivo(Devices device) {
+    public void updateDispositivo(Devices device) {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();  
             session.update(device);
+            session.getTransaction().commit();
             session.close();
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -68,7 +72,9 @@ public class DispositivoDAOImpl implements DispositivoDAO {
         Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();                    
             session.save(device);
+            session.getTransaction().commit();
             session.close();
         } catch (HibernateException e) {
             
@@ -76,7 +82,7 @@ public class DispositivoDAOImpl implements DispositivoDAO {
     }
 
     @Override
-    public List<Devices> buscaDispositivo(String code, String name, String type){
+    public List<Devices> getDispositivo(String code, String name, String type){
         List<Devices> lista = new ArrayList<>();
         Session session = null;
         try {

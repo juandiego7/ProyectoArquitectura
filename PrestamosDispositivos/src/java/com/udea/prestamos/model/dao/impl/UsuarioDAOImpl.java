@@ -35,7 +35,10 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 		Session session = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
+                        session.beginTransaction();  
 			session.save(user);
+                        session.getTransaction().commit();
+                        session.close();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}		

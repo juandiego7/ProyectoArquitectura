@@ -12,11 +12,11 @@ public interface DispositivoDAO {
 
     public List<Devices> getDispositivos();
 
-    public void ActualizaDispositivo(Devices device);
+    public void updateDispositivo(Devices device);
 
     public Devices getDispositivo(DevicesId deviceId);
 
     public void registraDispositivo(Devices device);
 
-    public List<Devices> buscaDispositivo(String code, String name, String type);
+    public List<Devices> getDispositivo(String code, String name, String type);
 }

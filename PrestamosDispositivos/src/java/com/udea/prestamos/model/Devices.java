@@ -23,20 +23,12 @@ public class Devices  implements java.io.Serializable {
     public Devices() {
     }
 
-	
-    public Devices(DevicesId id, String name, String type, String status) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.status = status;
-    }
-    public Devices(DevicesId id, String name, String type, String status, String details, Set loanses) {
+    public Devices(DevicesId id, String name, String type, String status, String details) {
        this.id = id;
        this.name = name;
        this.type = type;
        this.status = status;
        this.details = details;
-       this.loanses = loanses;
     }
    
     public DevicesId getId() {
