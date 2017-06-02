@@ -8,7 +8,9 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  * @author Juan Diego
@@ -18,7 +20,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 	
 	@Override
 	public List<Users> getUsuarios(){
-		List<Users> lista = new ArrayList<Users>();
+		List<Users> lista = new ArrayList<Users>();    
 		Session session = null;
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();//session provista por spring
@@ -26,7 +28,11 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 			lista = criteria.list();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-		}
+		}/*
+                SessionFactory sf = HibernateUtil.getSessionFactory();
+                Session session=sf.openSession();
+                Query query= session.createQuery("from users");
+                lista = query.list();*/
 		return lista;
 	}
 
