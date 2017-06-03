@@ -8,5 +8,8 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="com/udea/prestamos/model/Users.hbm.xml"/>
+    <mapping resource="com/udea/prestamos/model/Loans.hbm.xml"/>
+    <mapping resource="com/udea/prestamos/model/Devices.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -28,11 +28,7 @@ public class UsuarioDAOImpl implements UsuarioDAO{
 			lista = criteria.list();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-		}/*
-                SessionFactory sf = HibernateUtil.getSessionFactory();
-                Session session=sf.openSession();
-                Query query= session.createQuery("from users");
-                lista = query.list();*/
+		}
 		return lista;
 	}
 

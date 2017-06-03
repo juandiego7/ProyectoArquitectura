@@ -35,18 +35,22 @@ public class autenticacionWS {
      */
     @WebMethod(operationName = "devuelveUsuario")
     public String devuelveUsuario(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
+        String valido = "no";
         UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
-        return usuarioDAOImpl.getUsuario(username).getName();
+        if(usuarioDAOImpl.getUsuario(username).getPassword().equals(password)){
+            valido = "si";
+        }
+        return valido;
     }
 
     /**
      * Web service operation
      */
     @WebMethod(operationName = "devolverTodosUsuarios")
-    public List<Users> devolverTodosUsuarios() {
+    public String devolverTodosUsuarios() {
         UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
         List<Users> listaUsers = usuarioDAOImpl.getUsuarios();
-        return listaUsers;
+        return listaUsers.get(0).getName();
     }
 
    
