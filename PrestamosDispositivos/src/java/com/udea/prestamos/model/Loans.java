@@ -20,21 +20,11 @@ public class Loans  implements java.io.Serializable {
     public Loans() {
     }
 
-	
-    public Loans(LoansId id, Devices devices, Users users, Date endDate, String status) {
+    public Loans(LoansId id, Date endDate, Date returnDate, String status) {
         this.id = id;
-        this.devices = devices;
-        this.users = users;
         this.endDate = endDate;
+        this.returnDate = returnDate;
         this.status = status;
-    }
-    public Loans(LoansId id, Devices devices, Users users, Date endDate, Date returnDate, String status) {
-       this.id = id;
-       this.devices = devices;
-       this.users = users;
-       this.endDate = endDate;
-       this.returnDate = returnDate;
-       this.status = status;
     }
    
     public LoansId getId() {

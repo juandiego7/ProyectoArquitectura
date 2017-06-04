@@ -70,8 +70,9 @@ public class PrestamoDAOImpl implements PrestamoDAO {
             device.setId(deviceId);
             session = HibernateUtil.getSessionFactory().openSession();
             Criteria criteria = session.createCriteria(Loans.class);
-            criteria.add(Restrictions.eq("loanId.device", device));
-            criteria.add(Restrictions.between("loanId.startDate", startDateToday, endDateToday));
+            criteria.add(Restrictions.eq("id.copy", deviceId.getCopy()));
+            criteria.add(Restrictions.eq("id.code", deviceId.getCode()));
+            criteria.add(Restrictions.between("id.startDate", startDateToday, endDateToday));
             lista = criteria.list();
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -113,7 +114,7 @@ public class PrestamoDAOImpl implements PrestamoDAO {
         try {
             session =  HibernateUtil.getSessionFactory().openSession();
             Criteria criteria = session.createCriteria(Loans.class);
-            criteria.add(Restrictions.eq("loanId.username", user));
+            criteria.add(Restrictions.eq("id.username", user.getUsername()));
             criteria.add(Restrictions.eq("status", status));
             lista = criteria.list();
         } catch (HibernateException e) {
