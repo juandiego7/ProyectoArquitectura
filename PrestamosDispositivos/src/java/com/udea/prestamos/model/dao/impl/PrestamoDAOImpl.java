@@ -30,7 +30,7 @@ public class PrestamoDAOImpl implements PrestamoDAO {
         try {
             session = HibernateUtil.getSessionFactory().openSession();//session provista por spring
             Criteria criteria = session.createCriteria(Loans.class);
-            lista = criteria.list();
+            lista = criteria.list();            
         } catch (HibernateException e) {
             e.printStackTrace();
         }
@@ -87,6 +87,7 @@ public class PrestamoDAOImpl implements PrestamoDAO {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             loan = (Loans) session.get(Loans.class, loanId);
+            session.close();
         } catch (HibernateException e) {
             e.printStackTrace();
         }
@@ -96,12 +97,19 @@ public class PrestamoDAOImpl implements PrestamoDAO {
     @Override
     public void updatePrestamo(Loans loan) {
         Session session = null;
+        
         try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+        } catch (HibernateException ex) {
             session = HibernateUtil.getSessionFactory().openSession();
+        }
+        try {
+            //session = HibernateUtil.getSessionFactory().getCurrentSession()
             session.beginTransaction();
             session.update(loan);
+            System.out.println("213123");
             session.getTransaction().commit();
-            session.close();
+            
         } catch (HibernateException e) {
             e.printStackTrace();
         }
