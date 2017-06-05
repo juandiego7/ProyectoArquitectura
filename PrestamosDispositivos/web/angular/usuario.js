@@ -1,60 +1,169 @@
-var appCliente = angular.module('usuario',['ngRoute','ngCookies']);
+var appCliente = angular.module('usuario', ['ngRoute', 'ngCookies']);
 
-appCliente.service('usuarios',function($http,$cookies,$location){
-	this.autenticar = function(username,password){
-		return $http({
-			url:'http://localhost:8080/PrestamosDispositivos/api/usuario',
-			method:'GET',
-			params:{
-				username: username,
-				password: password
-			}
-                                
-		});
-	};
+appCliente.service('usuarios', function ($http, $cookies, $location) {
+    this.autenticar = function (username, password) {
+        return $http({
+            url: 'http://localhost:8080/PrestamosDispositivos/api/usuario',
+            method: 'GET',
+            params: {
+                username: username,
+                password: password
+            }
+
+        }); 
+    };
+
+    this.registrar = function (username, typeId, numberId, name, lastName, email, password, role, manager) {
+        return $http({
+            url: 'http://localhost:8080/PrestamosDispositivos/api/usuario',
+            method: 'POST',
+            params: {
+                username: username,
+                typeId: typeId,
+                numberId: numberId,
+                name: name,
+                lastName: lastName,
+                email: email,
+                password: password,
+                role: role,
+                manager: manager
+            }
+        });
+    };
+
+    this.getDispositivos = function () {
+        return $http({
+            url: 'http://localhost:8080/PrestamosDispositivos/api/dispositivo',
+            method: 'GET'
+        });
+    };
+    
+    this.getPrestamosDispositivo = function (code,copy,date) {
+        return $http({
+            url: 'http://localhost:8080/PrestamosDispositivos/api/prestamo/dispositivo',
+            method: 'GET',
+            params:{
+                code:code,
+                copy:copy,
+                date:date
+            }
+        });
+    };
 });
 
-appCliente.controller('Login',function($scope, $location, $cookies, usuarios){
-	
-	$scope.username = '';
-	$scope.password = '';
-	
-	$scope.login = function(){
-            usuarios.autenticar($scope.username,$scope.password).then(
-			function success(data){
-				if (data.data!='') {
-					alert(data.data);
-					$scope.username = '';
-					$scope.password = '';
-                                       if(data.data == "S"){   
-                                           alert($location.absUrl());
-                                            $cookies.username = $scope.username;
-                                            $location.url("/index");
-                                       }else{
-                                           alert("no paso");
-                                       }
-				}
-                                
-			},
-			function failure(data){
-				alert("falla "+data.data);
-			}
-            );
-	};
+
+appCliente.controller('usuarioController', function ($scope, $cookies, $window, $log, usuarios) {
+
+    $scope.username = '';
+    $scope.typeId = '';
+    $scope.numberId = '';
+    $scope.name = '';
+    $scope.lastName = '';
+    $scope.email = '';
+    $scope.password = '';
+    $scope.role = '';
+    $scope.manager = '';
+    $scope.code = '';
+    $scope.copy = '';
+
+    $scope.login = function () {
+        usuarios.autenticar($scope.username, $scope.password).then(
+                function success(data) {
+                    if (data.data != '') {
+                        $scope.password = '';
+                        if (data.data == "S") {
+                            
+                            $scope.nombre = $scope.username;
+                            $cookies.username = $scope.username;
+                            console.log($scope.nombre);
+                            alert($scope.nombre);
+                            $window.location.href = "http://localhost:8080/PrestamosDispositivos/usuario.html";
+                        } else {
+                            alert("Usuario incorrecto");
+                        }
+                    }
+
+                },
+                function failure(data) {
+                    alert("falla " + data.data);
+                }
+        );
+    };
+
+    $scope.registrar = function () {
+        usuarios.registrar(
+                $scope.username, $scope.typeId, $scope.numberId,
+                $scope.name, $scope.lastName, $scope.email,
+                $scope.password, $scope.role, $scope.manager).then(
+                function success(data) {
+                    $scope.username = '';
+                    $scope.typeId = '';
+                    $scope.numberId = '';
+                    $scope.name = '';
+                    $scope.lastName = '';
+                    $scope.email = '';
+                    $scope.password = '';
+                    $scope.role = '';
+                    $scope.manager = '';
+                    $window.location.href = "http://localhost:8080/PrestamosDispositivos/login.html";
+                },
+                function failure(data) {
+                    alert("Error");
+                }
+        );
+    };
+    
+    $scope.getDispositivos = function () {
+        $scope.dispositivos = [];
+        usuarios.getDispositivos().then(
+                function success(data) {
+
+                    if (data.data != '') {
+                        angular.forEach(data.data,function(dat){
+                            $scope.dispositivos.push(dat);
+                        });
+                    }
+                },
+                function failure(data) {
+                    alert("falla " + data.data);
+                }
+        );
+    };
+    
+    $scope.reservar = function (dispositivo) {
+        $scope.prestamos = [];
+        $scope.date = new Date();
+        alert(dispositivo.deviceId.code);
+        usuarios.getPrestamosDispositivo(dispositivo.deviceId.code,dispositivo.deviceId.copy,$scope.date).then(
+                function success(data) {
+
+                    if (data.data != '') {
+                        angular.forEach(data.data,function(dat){
+                            $scope.prestamos.push(dat);
+                            alert(dat.status);
+                        });
+                    }
+                    $window.location.href = "http://localhost:8080/PrestamosDispositivos/reserva.html";
+                },
+                function failure(data) {
+                    alert("falla " + data.data);
+                }
+        );
+    };
+
 });
 
 
-appCliente.config(['$routeProvider',function($routeProvider){
-	
-	$routeProvider.when('/',{
-		templateUrl: 'login.html',
-		controller:'Login'
-	})
-                .when('/index',{
-		templateUrl: 'templates/index.html'   
-		
-                
-	});
-}]);
+appCliente.config(['$routeProvider', function ($routeProvider) {
+
+        $routeProvider
+                .when('/login', {
+                    templateUrl: 'login.html',
+                    controller: 'Login'
+                })
+                .when('/index', {
+                    templateUrl: 'index.html'
+                });
+    }]);
 
 

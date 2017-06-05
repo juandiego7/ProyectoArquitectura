@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="resources/angular.min.js"></script>
+        <script type="text/javascript" src="resources/angular-route.min.js"></script>
+        <script type="text/javascript" src="angular/usuario.js"></script>
+        <script type="text/javascript" src="resources/angular-cookies.min.js"></script>        
+    </head>
+    <body ng-app="usuario" ng-controller="usuarioController">
+        <h1>Horas disponibles</h1>
+        <div ng-repeat="p in prestamos">
+            <p>{{p.status}}</p>
+        </div>
+    </body>
+</html>

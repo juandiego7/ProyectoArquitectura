@@ -5,6 +5,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <script type="text/javascript" src="resources/angular.min.js"></script>
+        <script type="text/javascript" src="resources/angular-route.min.js"></script>
+        <script type="text/javascript" src="angular/usuario.js"></script>
+        <script type="text/javascript" src="resources/angular-cookies.min.js"></script>    
+        
         <!-- Ícono de la pestaña -->
         <link rel="icon" type="image/png" href="img/ima1.png"/>
 
@@ -17,7 +22,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body ng-app="usuario">
 
         <!--Acá empieza el nav-->
         <nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
@@ -51,19 +56,25 @@
         <!--Acá termina el nav-->
 
 
-        <div class="container">
+        <div class="container" ng-controller="usuarioController">
             <div class="card card-container">
                 <form class="form">
                     <h2>Registro</h2>
                     <hr/>
-                    <input type="text" id="inputName" class="form-control" placeholder="Nombre" required autofocus>
-                    <input type="text" id="inputUser" class="form-control" placeholder="Usuario" required>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
-                    <input type="password" id="inputPasswordRec" class="form-control" placeholder="Repetir contraseña" required>
+                    <input type="text" id="inputName" class="form-control" placeholder="Nombre" required autofocus ng-model="name">
+                    <input type="text" id="inputLastName" class="form-control" placeholder="Apellidos" required autofocus ng-model="lastName">
+                    <input type="text" id="inputUser" class="form-control" placeholder="Usuario" required ng-model="username">
+                    <select ng-model="typeId" class="form-control" id="selectTipoId" >
+                        <option selected value="CC">CC</option>
+                        <option value="TI">TI</option>
+                    </select>
+                    <input type="number" id="inputNumber" class="form-control" placeholder="numero" required ng-model="numberId">
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required ng-model="email">
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required ng-model="password">
+                    <input type="password" id="inputPasswordRec" class="form-control" placeholder="Repetir contraseña" required ng-model="passwordR">
                     <input type="checkbox" required>    Al hacer clic en "Registrarse", aceptas las Condiciones y confirmas que leíste nuestra <a href="#">Política de datos.</a>
                     <hr/>
-                    <button class="btn btn-success " id="enviar" type="submit">Registrarse</button>
+                    <button class="btn btn-success " id="enviar" type="submit" ng-click="registrar()">Registrarse</button>
                     <hr/>
                 </form>
             </div>
