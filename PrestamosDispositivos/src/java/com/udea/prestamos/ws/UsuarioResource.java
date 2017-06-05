@@ -23,82 +23,78 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("usuario")
 public class UsuarioResource {
-    
+
     UsuarioDAOImpl usuarioDAOImpl = new UsuarioDAOImpl();
-   
+
     @GET
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String login(@QueryParam("username")String username,
-                        @QueryParam("password")String password){
-        if (username==null) {
+    public String login(@QueryParam("username") String username,
+            @QueryParam("password") String password) {
+        if (username == null) {
             return "N";
         }
-        
         Users user = usuarioDAOImpl.getUsuario(username);
-        if(user!=null){
-            if(user.getPassword().equals(password)){
+        if (user != null) {
+            if (user.getPassword().equals(password)) {
                 return "S";
             }
         }
-        
+
         return "N";
     }
-    
-    
-    
 
     @POST//Metodo http con que responde este metodo
-    @Consumes(MediaType.APPLICATION_JSON)//Formato de respuesta
     @Produces(MediaType.APPLICATION_JSON)//Formato de respuesta
-    public Usuario registro(Usuario usuario) throws RemoteException{
-//                    @QueryParam("username")String username,
-//                    @QueryParam("typeId")String typeId,
-//                    @QueryParam("numberId")String numberId,
-//                    @QueryParam("name")String name,
-//                    @QueryParam("lastName")String lastName,
-//                    @QueryParam("email")String email,
-//                    @QueryParam("password")String password,
-//                    @QueryParam("role")String role,
-//                    @QueryParam("manager")String manager
-            
-        Users manager = null;
-        if (usuario.getManager()!=null) {
-            manager = new Users();
-            manager.setUsername(usuario.getManager().getUsername());
+    public void registro(
+            @QueryParam("username") String username,
+            @QueryParam("typeId") String typeId,
+            @QueryParam("numberId") String numberId,
+            @QueryParam("name") String name,
+            @QueryParam("lastName") String lastName,
+            @QueryParam("email") String email,
+            @QueryParam("password") String password,
+            @QueryParam("role") String role,
+            @QueryParam("manager") String manager) throws RemoteException {
+        Users managerU = null;
+        Users usuario = null;
+        try {
+            if (manager != null) {
+                managerU = new Users();
+                managerU.setUsername(username);
+            }
+            usuario = new Users(username, managerU, typeId, numberId, name, lastName, email, password, role);
+            usuarioDAOImpl.registraUsuario(usuario);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+//        Users manager = null;
+//        if (usuario.getManager()!=null) {
+//            manager = new Users();
+//            manager.setUsername(usuario.getManager().getUsername());
+//        }
+//
+//        Users user = new Users(usuario.getUsername(),
+//                               manager,
+//                               usuario.getTypeId(),
+//                               usuario.getNumberId(),
+//                               usuario.getName(),
+//                               usuario.getLastName(),
+//                               usuario.getEmail(),
+//                               usuario.getPassword(), 
+//                               usuario.getRole());
+//      
+//        System.out.println("sss "+user.getName());
+//        usuarioDAOImpl.registraUsuario(user);
+//        return usuario;
 
-        Users user = new Users(usuario.getUsername(),
-                               manager,
-                               usuario.getTypeId(),
-                               usuario.getNumberId(),
-                               usuario.getName(),
-                               usuario.getLastName(),
-                               usuario.getEmail(),
-                               usuario.getPassword(), 
-                               usuario.getRole());
-      
-        System.out.println("sss "+user.getName());
-        usuarioDAOImpl.registraUsuario(user);
-        return usuario;
-//            Users managerU = null;
-//            Users usuario = null;
-//            try {
-//                    if (manager != null) {
-//                            managerU = new Users();
-//                            managerU.setUsername(username);	
-//                    }
-//                    usuario = new Users(username, usuario, typeId, numberId, name, lastName, email, password, role, null, null);
-//                    usuarioDAOImpl.registraUsuario(usuario);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
     }
-    
+
     @GET
     @Path("todos")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Usuario> getTodos() throws RemoteException{
-        
+    public List<Usuario> getTodos() throws RemoteException {
+
         List<Users> users = null;
         List<Usuario> usuarios = null;
         try {
@@ -106,19 +102,19 @@ public class UsuarioResource {
             usuarios = new ArrayList<>();
             for (Users usuario : users) {
                 Usuario manager = null;
-                if (usuario.getUsers()!=null) {
+                if (usuario.getUsers() != null) {
                     manager = new Usuario();
                     manager.setUsername(usuario.getUsers().getUsername());
                 }
                 usuarios.add(new Usuario(usuario.getUsername(),
-                               usuario.getTypeId(),
-                               usuario.getNumberId(),
-                               usuario.getName(),
-                               usuario.getLastName(),
-                               usuario.getEmail(),
-                               usuario.getRole(), 
-                               usuario.getPassword(),
-                               manager));
+                        usuario.getTypeId(),
+                        usuario.getNumberId(),
+                        usuario.getName(),
+                        usuario.getLastName(),
+                        usuario.getEmail(),
+                        usuario.getRole(),
+                        usuario.getPassword(),
+                        manager));
             }
             return usuarios;
         } catch (Exception e) {

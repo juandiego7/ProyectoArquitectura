@@ -9,6 +9,7 @@ appCliente.service('usuarios',function($http,$cookies,$location){
 				username: username,
 				password: password
 			}
+                                
 		});
 	};
 });
@@ -25,13 +26,18 @@ appCliente.controller('Login',function($scope, $location, $cookies, usuarios){
 					alert(data.data);
 					$scope.username = '';
 					$scope.password = '';
-					return;
+                                       if(data.data == "S"){   
+                                           alert($location.absUrl());
+                                            $cookies.username = $scope.username;
+                                            $location.url("/index");
+                                       }else{
+                                           alert("no paso");
+                                       }
 				}
-				$cookies.username = $scope.username;
-				$location.url("/index");
+                                
 			},
 			function failure(data){
-				alert(data.data);
+				alert("falla "+data.data);
 			}
             );
 	};
@@ -43,6 +49,11 @@ appCliente.config(['$routeProvider',function($routeProvider){
 	$routeProvider.when('/',{
 		templateUrl: 'login.html',
 		controller:'Login'
+	})
+                .when('/index',{
+		templateUrl: 'templates/index.html'   
+		
+                
 	});
 }]);
 
